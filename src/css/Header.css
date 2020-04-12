@@ -1,0 +1,14 @@
+.navBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.navLink {
+    margin: 20px;
+}
+
+.signOut {
+    /* float: right; */
+    /* margin-right: 20%; */
+}
