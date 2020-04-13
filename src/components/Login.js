@@ -3,20 +3,15 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { useCookies } from 'react-cookie';
 import { Redirect } from 'react-router-dom';
 import "../css/Login.css";
+import { apiUrl, domainUrl } from '../config'
 
 export default function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
-    const [cookies, setCookie] = useCookies(['eruditejwt'])
+    const [cookies, setCookie] = useCookies(['erudite'])
 
     function validateForm() {
-        // if (username.length === 0) {
-        //     alert("please add a valid username")
-        // }
-        // if (password.length <= 3) {
-        //     alert("please use a password longer than 3 characters")
-        // }
         return username.length > 0 && password.length > 0;
     }
 
@@ -34,13 +29,13 @@ export default function Login(props) {
             body: JSON.stringify(payload)
         }
 
-        const url = `http://localhost:3000/api/v1/signin`
+        const url = `${apiUrl}/signin`
         fetch(url, requestOptions)
             .then(resp => resp.json())
             .then(json => {
                 setCookie('erudite', json);
 
-                window.location = "http://localhost:3001/questions";
+                window.location = `${domainUrl}/questions`;
             })
             .catch(err => console.log({ err }))
     }
@@ -48,15 +43,6 @@ export default function Login(props) {
     return (
         <div className="Login">
             <form onSubmit={handleSubmit}>
-                {/* <FormGroup controlId="email" bsSize="large">
-                    <FormLabel>Email</FormLabel>
-                    <FormControl
-                        autoFocus
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                </FormGroup> */}
                 <FormGroup controlId="username">
                     <FormLabel>Username</FormLabel>
                     <FormControl

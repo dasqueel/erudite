@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
+import './css/App.css';
 import UserProfile from "./components/UserProfile"
 import Questions from "./components/Questions"
 import Header from "./components/Header";

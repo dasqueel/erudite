@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCookies } from 'react-cookie';
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { apiUrl, domainUrl } from '../config'
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ const Register = () => {
             body: JSON.stringify(payload)
         }
 
-        const url = `http://localhost:3000/api/v1/register`
+        const url = `${apiUrl}/api/v1/register`
         // TODO: handle existing Usernames and Emails
         fetch(url, requestOptions)
             .then(resp => resp.json())
@@ -35,7 +36,7 @@ const Register = () => {
                 const cookieToSet = { token: json.token, username: json.username }
                 setCookie('erudite', cookieToSet);
 
-                window.location = "http://localhost:3001/questions";
+                window.location = `${domainUrl}/questions`;
             })
             .catch(err => console.log({ err }))
     }

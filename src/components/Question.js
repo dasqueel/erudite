@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react"
-import '../App.css';
+import '../css/App.css';
 // import { Accordion, Card } from 'react-bootstrap/Accordion'
 import { Accordion, Card, Button } from 'react-bootstrap'
 import { useCookies } from 'react-cookie'
+import { apiUrl } from '../config'
 
 // place to add youtube links or any other links (input text field)
 // drag and drop feature
@@ -13,7 +14,6 @@ const Question = ({ text, id }) => {
     const [cookies] = useCookies(['eruditejwt'])
     const inputEl = useRef(null)
 
-    // async function postData(url = '', data = {}) {
     const postResource = async (questionId, theUrl) => {
 
         const token = cookies.eruditejwt
@@ -26,7 +26,7 @@ const Question = ({ text, id }) => {
             headers: myHeaders,
             redirect: 'follow'
         }
-        const url = `http://localhost:3000/api/v1/answer?questionId=${questionId}&url=${theUrl}`
+        const url = `${apiUrl}/answer?questionId=${questionId}&url=${theUrl}`
 
         const response = await fetch(url, requestOptions)
 
@@ -38,7 +38,6 @@ const Question = ({ text, id }) => {
         } else {
             alert("nope")
         }
-        // console.log({ response })
 
         return await response.json()
     }

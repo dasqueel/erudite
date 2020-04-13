@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react"
 import Question from "./Question"
 import { useCookies } from 'react-cookie'
+import { apiUrl } from '../config'
 
 const Questions = () => {
     const [questions, setQuestions] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [cookies, setCookie, removeCookie] = useCookies(['eruditejwt'])
 
     useEffect(() => {
         fetch(
-            `http://localhost:3000/api/v1/questions`,
+            `${apiUrl}/questions`,
             {
                 method: "GET"
             }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useCookies } from 'react-cookie'
 import YouTube from 'react-youtube';
 import { Accordion, Card, Button } from 'react-bootstrap'
+import { apiUrl } from '../config'
 
 const UserProfile = ({ match }) => {
 
@@ -20,7 +21,6 @@ const UserProfile = ({ match }) => {
         var video_id = url.split('v=')[1];
 
         if (video_id) {
-            // console.log({ video_id })
             return video_id
         }
 
@@ -30,7 +30,7 @@ const UserProfile = ({ match }) => {
     useEffect(() => {
 
         fetch(
-            `http://localhost:3000/api/v1/answers/${username}`
+            `${apiUrl}/answers/${username}`
         )
             .then(res => res.json())
             .then(response => {

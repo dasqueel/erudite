@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useCookies } from 'react-cookie'
 import '../css/Header.css';
 import UserProfile from "./UserProfile";
-
+import { apiUrl } from '../config'
 /*
 
 have a button "Your Profile" that only shows if the user is signed in
@@ -37,7 +37,7 @@ const Header = () => {
     const signOutHandler = () => {
         removeCookie('erudite')
 
-        window.location = "http://localhost:3001/login";
+        window.location = `${apiUrl}/login`;
     }
 
     if (hasCookie) {
