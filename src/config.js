@@ -1,2 +1,2 @@
-export const apiUrl = 'localhost:3000/api/v1'
-export const domainUrl = 'localhost:3001'
+export const apiUrl = 'http://localhost:3000/api/v1'
+export const domainUrl = 'http://localhost:3001'

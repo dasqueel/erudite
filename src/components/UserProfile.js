@@ -6,6 +6,7 @@ import { apiUrl } from '../config'
 
 const UserProfile = ({ match }) => {
 
+    const [cookies] = useCookies(['erudite'])
     const [videos, setVideos] = useState([]);
     const username = match.params.username
 
@@ -44,6 +45,36 @@ const UserProfile = ({ match }) => {
         event.target.pauseVideo();
     }
 
+    const deleteAnswer = (vidId) => {
+
+        const token = cookies.erudite.token
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`)
+
+        const requestOptions = {
+            method: 'DELETE',
+            redirect: 'follow',
+            mode: 'cors',
+            headers: myHeaders
+        }
+
+        fetch(`${apiUrl}/answer/${vidId}`, requestOptions)
+            .then(resp => {
+                // console.log({ resp })
+                resp.json()
+            })
+            .then(json => {
+                // alert(json)
+                console.log({ json })
+                // if status equals something, then remove the element from DOM
+                // alert a successfull delete
+                if (json.deletedCount > 0) {
+                    alert('successfully removed!')
+                } else { alert('failed to remove') }
+            })
+            .catch(err => console.log({ err }))
+    }
+
     return (
         <div>
             <h1>{username}'s answers</h1>
@@ -70,7 +101,12 @@ const UserProfile = ({ match }) => {
                                                     opts={ytOpts}
                                                     onReady={_onReady}
                                                 />
-                                                <p>some other meta data about video (score?)</p>
+                                                <button
+                                                    onClick={() => deleteAnswer(vid._id)}
+                                                >
+                                                    Remove
+                                                </button>
+                                                <p>some other meta data about video (score? user comments?)</p>
                                             </div>
                                         )
                                     })}
