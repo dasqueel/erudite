@@ -8,8 +8,11 @@ import Footer from "./components/Footer";
 import Login from "./components/Login"
 import PrivateRoute from "./components/PrivateRoute"
 import Register from "./components/Register";
+import { apiUrl, domainUrl } from './config'
 
 function App() {
+  console.log({ apiUrl })
+  console.log({ domainUrl })
   return (
     <div class="App">
       <Header />
