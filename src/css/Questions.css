@@ -1,0 +1,16 @@
+/* .container {
+    display: flex;
+    justify-content: center;
+} */
+
+.questionsHeader {
+    /* text-align: center; */
+    /* width: 75%; */
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* .category-questionSet-dropdown {
+    display: flex;
+    justify-content: space-evenly;
+} */

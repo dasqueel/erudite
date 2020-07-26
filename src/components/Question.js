@@ -72,7 +72,7 @@ const Question = ({ text, id, isAnswered }) => {
                             <button
                                 onClick={() => postResource(id, url)}
                             >
-                                add resource
+                                add answer
                             </button>
                         </Card.Body>
                     </Accordion.Collapse>
